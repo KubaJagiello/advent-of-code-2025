@@ -2,20 +2,12 @@ import util.AocUtils;
 
 import java.util.function.Supplier;
 
-private static final int WARMUP_ITERATIONS = 5;
-private static final int MEASURED_ITERATIONS = 10;
+private static final int WARMUP_ITERATIONS = 50;
+private static final int MEASURED_ITERATIONS = 30;
+private static final int DAYS = 12;
 
 void main() throws Exception {
-    runDay(1);
-//    runAllDays();
-}
-
-void runDay(int day) throws Exception {
-    benchmarkDay(day);
-}
-
-void runAllDays() throws Exception {
-    for (int day = 1; day <= 12; day++) {
+    for (int day = 1; day <= DAYS; day++) {
         benchmarkDay(day);
     }
 }
