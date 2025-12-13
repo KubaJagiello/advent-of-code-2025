@@ -45,7 +45,24 @@ public class Day10 implements AdventOfCode {
     }
 
     public String solvePart2(List<String> lines) {
-        return "( ╯°□°）╯︵ ┻━┻";
+        try {
+            var pyenv = System.getProperty("user.home") + "/.pyenv/versions/3.13.5/bin/python";
+            var script = "src/main/python/day10_part2_z3.py";
+            var process = new ProcessBuilder(pyenv, script).start();
+
+            try (var writer = process.outputWriter()) {
+                for (var line : lines) {
+                    writer.write(line);
+                    writer.newLine();
+                }
+            }
+
+            var result = new String(process.getInputStream().readAllBytes()).trim();
+            process.waitFor();
+            return result;
+        } catch (Exception e) {
+            return "(╯°□°）╯︵ ┻━┻";
+        }
     }
 
     private List<BitSet> parseButtons(String[] split) {
